@@ -1,8 +1,8 @@
 enum Brand { aqua, coral, amber }
 
-const String _brandFromEnv = String.fromEnvironment('BRAND', defaultValue: 'aqua');
+const String _brandFromEnv = String.fromEnvironment('BRAND');
 
 final Brand currentBrand = Brand.values.firstWhere(
   (b) => b.name == _brandFromEnv,
-  orElse: () => Brand.aqua,
+  orElse: () => Brand.values.first,
 );

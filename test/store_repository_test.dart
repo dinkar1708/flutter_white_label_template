@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_white_label_template/brand/brand.dart';
-import 'package:flutter_white_label_template/data/store_repository.dart';
+import 'package:flutter_white_label_template/repositories/store_repository.dart';
 
 void main() {
   final repo = StoreRepository();

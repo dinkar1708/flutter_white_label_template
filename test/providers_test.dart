@@ -2,7 +2,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_white_label_template/brand/brand.dart';
 import 'package:flutter_white_label_template/brand/brand_config.dart';
-import 'package:flutter_white_label_template/providers/providers.dart';
+import 'package:flutter_white_label_template/providers/brand_providers.dart';
+import 'package:flutter_white_label_template/providers/store_providers.dart';
 
 void main() {
   for (final brand in Brand.values) {

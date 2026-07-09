@@ -1,5 +1,5 @@
 import '../brand/brand.dart';
-import 'store.dart';
+import '../models/store.dart';
 
 class StoreRepository {
   static const Duration _fakeLatency = Duration(milliseconds: 800);
