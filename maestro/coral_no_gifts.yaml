@@ -1,0 +1,11 @@
+appId: com.dinkar1708.flutter_white_label_template.coral
+name: Coral smoke test (golden-rule: no Gifts FAB)
+---
+- launchApp:
+    clearState: true
+- assertVisible: "Coral"
+- assertVisible: "Sunset Diner"
+- assertVisible: "Reef Records"
+# Feature flag OFF for coral — Gifts FAB must not exist.
+# This is the on-device proof of the golden rule.
+- assertNotVisible: "Gifts"

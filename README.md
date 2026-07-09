@@ -76,7 +76,8 @@ Three layers: **unit** (repo), **provider** (Riverpod DI, iterates
 Gifts FAB is absent, proving the golden rule end-to-end).
 
 See [`docs/TESTING.md`](docs/TESTING.md) for the full strategy, examples,
-and how to add tests for a new brand.
+Maestro flows, coverage commands, and how to add tests for a new brand.
+Latest run snapshot: [`docs/TEST_RESULTS.md`](docs/TEST_RESULTS.md).
 
 ---
 

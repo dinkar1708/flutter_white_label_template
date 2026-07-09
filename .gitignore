@@ -27,3 +27,4 @@ doc/api/
 .flutter-plugins-dependencies
 .claude/settings.local.json
 outputs/
+coverage/

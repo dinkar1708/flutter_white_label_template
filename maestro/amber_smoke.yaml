@@ -1,0 +1,13 @@
+appId: com.dinkar1708.flutter_white_label_template.amber
+name: Amber smoke test
+---
+- launchApp:
+    clearState: true
+- assertVisible: "Amber"
+- assertVisible: "Golden Bakery"
+- assertVisible: "Honey Deli"
+- assertVisible: "Amber Threads"
+- assertVisible: "Sunrise Grocers"
+- assertVisible: "18% off"
+# Feature flag ON for amber
+- assertVisible: "Gifts"

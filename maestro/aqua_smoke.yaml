@@ -1,0 +1,14 @@
+appId: com.dinkar1708.flutter_white_label_template.aqua
+name: Aqua smoke test
+---
+- launchApp:
+    clearState: true
+- assertVisible: "Aqua"
+- assertVisible: "Ocean Cafe"
+- assertVisible: "Wave Boutique"
+- assertVisible: "Pearl Books"
+- assertVisible: "10% off"
+# Feature flag ON for aqua
+- assertVisible: "Gifts"
+- tapOn: "Gifts"
+- assertVisible: "Gifts coming soon"
