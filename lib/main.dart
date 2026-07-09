@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'brand/brand.dart';
+import 'brand/brand_config.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -30,7 +33,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: brandConfigs[currentBrand]!.appName),
     );
   }
 }

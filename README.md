@@ -2,6 +2,28 @@
 
 A new Flutter project.
 
+## Run
+
+Select a brand at compile time with `--dart-define=BRAND=<aqua|coral|amber>`
+(defaults to `aqua` when omitted):
+
+```sh
+flutter pub get
+
+# default brand (aqua)
+flutter run
+
+# pick a brand
+flutter run --dart-define=BRAND=coral
+flutter run --dart-define=BRAND=amber
+
+# target a specific device
+flutter run -d <device-id> --dart-define=BRAND=coral
+
+# list devices
+flutter devices
+```
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
