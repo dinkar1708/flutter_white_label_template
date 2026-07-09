@@ -24,6 +24,16 @@ flutter run -d <device-id> --dart-define=BRAND=coral
 flutter devices
 ```
 
+## Test
+
+```sh
+# run the whole test suite
+flutter test
+
+# run just the store repository tests
+flutter test test/store_repository_test.dart
+```
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
