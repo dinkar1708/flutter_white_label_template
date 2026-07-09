@@ -65,13 +65,18 @@ for you.
 ## Test
 
 ```sh
-flutter test                                # full suite
+flutter test                                # full suite (12 tests)
 flutter test test/store_repository_test.dart
 flutter test test/providers_test.dart
+flutter test test/screens/home_screen_test.dart
 ```
 
-The provider test uses `ProviderContainer` to override `brandProvider`, so it
-verifies each brand's config without needing `--dart-define` at test time.
+Three layers: **unit** (repo), **provider** (Riverpod DI, iterates
+`Brand.values`), **widget** (HomeScreen — the key coral test asserts the
+Gifts FAB is absent, proving the golden rule end-to-end).
+
+See [`docs/TESTING.md`](docs/TESTING.md) for the full strategy, examples,
+and how to add tests for a new brand.
 
 ---
 
