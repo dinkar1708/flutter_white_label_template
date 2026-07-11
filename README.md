@@ -20,6 +20,26 @@ Same codebase. Different colors, different merchant catalogs, and — the key
 demo — a **feature flag** (`giftEnabled`) that hides the Gifts button for
 Coral. No brand-specific code anywhere.
 
+### Three separate Android apps from one repo
+
+Each brand builds a distinct APK with its own package ID and launcher
+label, installable **side-by-side**:
+
+<img src="docs/screenshots/launcher_3flavors.png" width="320" alt="Three flavored apps on the launcher: Amber, Aqua, Coral"/>
+
+```
+com.dinkar1708.flutter_white_label_template.aqua
+com.dinkar1708.flutter_white_label_template.coral
+com.dinkar1708.flutter_white_label_template.amber
+```
+
+At boot each app prints its runtime identity so you can confirm what's
+running:
+
+```
+[boot] brand=coral appId=com.dinkar1708.flutter_white_label_template.coral appName="Coral" version=1.0.0+1
+```
+
 ---
 
 ## The golden rule
@@ -47,14 +67,21 @@ flutter pub get
 # default brand (aqua)
 flutter run
 
-# pick a brand at build time
+# pick a brand at build time (iOS + all platforms)
 flutter run --dart-define=BRAND=coral
 flutter run --dart-define=BRAND=amber
 
+# Android — install a fully-flavored APK with its own package ID
+flutter run --flavor coral --dart-define=BRAND=coral
+flutter build apk --flavor amber --dart-define=BRAND=amber
+
 # target a specific device
 flutter devices
-flutter run -d <device-id> --dart-define=BRAND=coral
+flutter run -d <device-id> --flavor coral --dart-define=BRAND=coral
 ```
+
+**Rule of thumb:** the `--flavor` value **must** equal the `BRAND` value.
+`.vscode/launch.json` pairs them so they can never mismatch.
 
 In **Cursor / VS Code**, use the `Brand: aqua`, `Brand: coral`, or
 `Brand: amber` entries in the Run & Debug panel — they pass the dart-define
@@ -162,8 +189,8 @@ brand automatically.
 | 3 | Mock per-brand store repository + unit test | ✅ |
 | 4 | Riverpod providers + override test | ✅ |
 | 5 | Brand-agnostic home screen | ✅ |
-| 6 | Android product flavors (side-by-side installable apps) | ⏳ |
-| 7 | iOS xcconfig + shared schemes | ⏳ |
+| 6 | Android product flavors (side-by-side installable apps) | ✅ |
+| 7 | iOS xcconfig + shared schemes | ✅ |
 | 8 | CI matrix build + polished docs | ⏳ |
 
 ---
