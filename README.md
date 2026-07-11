@@ -1,9 +1,11 @@
 # flutter_white_label_template
 
+[![build](https://github.com/dinkar1708/flutter_white_label_template/actions/workflows/build.yml/badge.svg)](https://github.com/dinkar1708/flutter_white_label_template/actions/workflows/build.yml)
+
 **One Flutter codebase → N branded apps.** A showcase template for the
 white-label / OEM pattern: three fictional brands share a single codebase but
 differ in identity, theme, feature flags, and mock data — all driven by a
-compile-time `--dart-define`.
+compile-time `--dart-define` and platform flavor.
 
 > Product story: a local perks / rewards platform, co-branded per region.
 
@@ -39,6 +41,29 @@ running:
 ```
 [boot] brand=coral appId=com.dinkar1708.flutter_white_label_template.coral appName="Coral" version=1.0.0+1
 ```
+
+---
+
+## Why white-label?
+
+Real-world scenarios where one codebase serving many brands beats N
+separate repos:
+
+- **Telco / mall / airline loyalty programmes** — each partner brand
+  wants their own logo, colours, and Play/App Store listing, but they
+  ship the *same* rewards engine underneath.
+- **Franchise apps** — every franchisee gets their own store finder,
+  menu, and app icon, but bug fixes and features roll out globally.
+- **Agency deliverables** — a single team builds a product once and
+  sells it to N clients as *their* app, each with an isolated bundle
+  identifier and signing key.
+- **Regional rollout** — one product, three regions, three localised
+  brands with different feature-flag matrices per market.
+
+The engineering value: **new partner ≈ 15 minutes**, not weeks. Add an
+enum value, a config entry, a flavor block, a scheme, and a CI matrix
+line — done. Zero UI code changes because feature code reads
+`config.giftEnabled`, never `brand == Brand.coral` (see below).
 
 ---
 
@@ -157,9 +182,9 @@ Roughly 15 minutes end-to-end. Say you want to add `pearl`:
 - [ ] Add `pearl` to the `Brand` enum in `lib/brand/brand.dart`
 - [ ] Add a `pearl` entry to `brandConfigs` (seed color, app name, gifts on/off)
 - [ ] Add store list to `_storesByBrand` in `lib/repositories/store_repository.dart`
-- [ ] Android: add `pearl { }` to `productFlavors` in `android/app/build.gradle`
-- [ ] iOS: add `pearl.xcconfig` + build configurations + shared scheme in Xcode
-- [ ] CI: add `pearl` to the workflow matrix
+- [ ] Android: add `pearl { }` to `productFlavors` in `android/app/build.gradle.kts` (applicationIdSuffix + resValue for app_name)
+- [ ] iOS: create `ios/Flutter/{Debug,Profile,Release}-pearl.xcconfig` and add the matching build configurations + shared scheme (use `ios/Flutter/*-coral.xcconfig` as a template)
+- [ ] CI: add `pearl` to the `matrix.brand` array in `.github/workflows/build.yml`
 - [ ] `.vscode/launch.json`: add a `Brand: pearl` launch config
 
 Provider tests are parameterized over `Brand.values`, so they cover the new
@@ -174,9 +199,9 @@ brand automatically.
   [`riverpod_annotation`](https://pub.dev/packages/riverpod_annotation) —
   code-generated providers, DI, override-based testing
 - Material 3 with `ColorScheme.fromSeed(config.seedColor)` for per-brand theming
-- Android product flavors *(in progress)*
-- iOS xcconfig + shared schemes *(in progress)*
-- GitHub Actions matrix builds *(in progress)*
+- Android product flavors — 3 side-by-side APKs
+- iOS xcconfig + shared schemes — 3 side-by-side `.app`s
+- GitHub Actions matrix build — one CI job per brand → per-brand APK artifacts
 
 ---
 
@@ -191,7 +216,7 @@ brand automatically.
 | 5 | Brand-agnostic home screen | ✅ |
 | 6 | Android product flavors (side-by-side installable apps) | ✅ |
 | 7 | iOS xcconfig + shared schemes | ✅ |
-| 8 | CI matrix build + polished docs | ⏳ |
+| 8 | CI matrix build + polished docs | ✅ |
 
 ---
 
