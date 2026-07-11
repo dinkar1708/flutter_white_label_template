@@ -6,6 +6,7 @@
             "request": "launch",
             "type": "dart",
             "program": "lib/main.dart",
+            "args": ["--flavor", "aqua"],
             "toolArgs": ["--dart-define=BRAND=aqua"]
         },
         {
@@ -13,6 +14,7 @@
             "request": "launch",
             "type": "dart",
             "program": "lib/main.dart",
+            "args": ["--flavor", "coral"],
             "toolArgs": ["--dart-define=BRAND=coral"]
         },
         {
@@ -20,6 +22,7 @@
             "request": "launch",
             "type": "dart",
             "program": "lib/main.dart",
+            "args": ["--flavor", "amber"],
             "toolArgs": ["--dart-define=BRAND=amber"]
         }
     ]

@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.flutter_white_label_template"
+    namespace = "com.dinkar1708.flutter_white_label_template"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -15,14 +15,38 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.flutter_white_label_template"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
+        applicationId = "com.dinkar1708.flutter_white_label_template"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+    }
+
+    // One codebase, N brand-flavored APKs. Each flavor gets its own
+    // applicationId suffix so all three can install side-by-side, plus
+    // a per-brand app_name resource used from AndroidManifest.xml.
+    // Flavor name MUST match the --dart-define=BRAND=<name> value.
+    buildFeatures {
+        resValues = true
+    }
+
+    flavorDimensions += "brand"
+    productFlavors {
+        create("aqua") {
+            dimension = "brand"
+            applicationIdSuffix = ".aqua"
+            resValue("string", "app_name", "Aqua")
+        }
+        create("coral") {
+            dimension = "brand"
+            applicationIdSuffix = ".coral"
+            resValue("string", "app_name", "Coral")
+        }
+        create("amber") {
+            dimension = "brand"
+            applicationIdSuffix = ".amber"
+            resValue("string", "app_name", "Amber")
+        }
     }
 
     buildTypes {
