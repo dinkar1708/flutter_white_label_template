@@ -1,10 +1,15 @@
 name: build
 
 on:
+  # Full matrix build runs only on release branches — main pushes stay free.
+  # Cut a branch named e.g. `release/1.2.0` and CI produces one signed
+  # APK artifact per brand.
   push:
-    branches: [main]
+    branches:
+      - 'release/**'
   pull_request:
-    branches: [main]
+    branches:
+      - 'release/**'
   workflow_dispatch:
 
 env:

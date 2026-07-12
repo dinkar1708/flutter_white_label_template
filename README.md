@@ -145,6 +145,45 @@ Latest run snapshot: [`docs/TEST_RESULTS.md`](docs/TEST_RESULTS.md).
 
 ---
 
+## CI
+
+GitHub Actions workflow: [`.github/workflows/build.yml`](.github/workflows/build.yml).
+
+**Two jobs, one per push to a `release/**` branch** (main is intentionally
+free so day-to-day commits don't burn minutes):
+
+1. **`analyze-test`** — `flutter pub get` → `dart run build_runner build`
+   → `flutter analyze` → `flutter test --coverage` → upload
+   `coverage/lcov.info` artifact.
+2. **`build-android`** — depends on the above, then runs a matrix job
+   per brand:
+   ```
+   strategy.matrix.brand: [aqua, coral, amber]
+   ```
+   Each matrix leg builds a flavored debug APK and uploads
+   `app-<brand>-debug.apk` as an artifact (14-day retention).
+
+### How to trigger a build
+
+```sh
+# Cut a release branch — any name matching release/**
+git checkout -b release/1.2.0
+git push -u origin release/1.2.0
+```
+
+Or open a PR targeting a `release/**` branch, or trigger manually from
+the Actions tab (`workflow_dispatch`).
+
+### What you get per run
+
+- 1 coverage report (`coverage-lcov` artifact)
+- 3 flavored APKs (`app-aqua-debug`, `app-coral-debug`, `app-amber-debug`)
+
+Adding a 4th brand needs one new line in `matrix.brand`. That's the
+whole CI change — the rest of the workflow is brand-agnostic.
+
+---
+
 ## Architecture
 
 ```
