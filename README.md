@@ -2,6 +2,13 @@
 
 [![build](https://github.com/dinkar1708/flutter_white_label_template/actions/workflows/build.yml/badge.svg)](https://github.com/dinkar1708/flutter_white_label_template/actions/workflows/build.yml)
 
+> ⚠️ **Before you copy this template**: this is the *flavors* pattern — one
+> codebase → N brands of **the same product**. If your apps have **different
+> feature sets** (some need `in_app_purchase`, camera, health, etc. and others
+> don't), flavors are the wrong shape and Apple/Google will flag unused
+> frameworks. Use a **monorepo** (Melos / Pub Workspaces) instead.
+> Full decision guide: **[`docs/FLAVORS_VS_MONOREPO.md`](docs/FLAVORS_VS_MONOREPO.md)**.
+
 **One Flutter codebase → N branded apps.** A showcase template for the
 white-label / OEM pattern: three fictional brands share a single codebase but
 differ in identity, theme, feature flags, and mock data — all driven by a
@@ -34,6 +41,11 @@ com.dinkar1708.flutter_white_label_template.aqua
 com.dinkar1708.flutter_white_label_template.coral
 com.dinkar1708.flutter_white_label_template.amber
 ```
+
+> These IDs use one shared base + `.<brand>` suffix for demo clarity.
+> For real products you'll usually want **fully independent** IDs
+> (`com.aquaperks.mobile`, `com.coralrewards.app`, …) — see
+> [`docs/INDEPENDENT_APP_IDS.md`](docs/INDEPENDENT_APP_IDS.md).
 
 At boot each app prints its runtime identity so you can confirm what's
 running:
